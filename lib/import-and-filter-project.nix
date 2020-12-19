@@ -29,9 +29,9 @@ in project // {
                 packageSrc = if !pkgs.lib.strings.hasPrefix (toString projectNix) (toString oldPkg.src.content)
                   then toString oldPkg.src.content
                   else let
-                    subDir = pkgs.lib.strings.removePrefix "/" (
+                    subDir = projectSubDir'' + (pkgs.lib.strings.removePrefix "/" (
                       pkgs.lib.strings.removePrefix (toString projectNix)
-                        (toString oldPkg.src.content));
+                        (toString oldPkg.src.content)));
                     srcRepoPrefix = projectSubDir'' + ".source-repository-packages/";
                     in if pkgs.lib.strings.hasPrefix srcRepoPrefix subDir
                       then
